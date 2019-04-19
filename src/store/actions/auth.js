@@ -18,8 +18,9 @@ export const authUser = (type, userData) => (dispatch) => {
 		return apiCall('post', `/api/auth/${type}`, userData)
 			.then(({ token, ...user }) => {
 				localStorage.setItem('jwtToken', token);
+				setAuthorizationToken(token);
 				dispatch(setCurrentUser(user));
-				dispatch(removeError);
+				dispatch(removeError()); //ana f l app  b7ot l err manuall w bshelo manual
 				resolve();
 			})
 			.catch((err) => {
@@ -29,10 +30,8 @@ export const authUser = (type, userData) => (dispatch) => {
 	});
 };
 
-export const logout = () => {
-	return (dispatch) => {
-		localStorage.clear();
-		setAuthorizationToken(false);
-		dispatch(setCurrentUser({}));
-	};
+export const logout = () => (dispatch) => {
+	localStorage.clear();
+	setAuthorizationToken(false);
+	dispatch(setCurrentUser({}));
 };

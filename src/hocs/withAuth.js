@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import history from '../history';
+
+//higherorder component hna da 3obara 3n function bta5od child component tdelo shwi functionability w trg3o tany
 export default (ComponentToBeRendered) => {
 	class Authenticate extends Component {
 		componentDidMount = () => {
